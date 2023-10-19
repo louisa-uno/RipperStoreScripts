@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Hide Bump posts on RipperStore Forum
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Hide containing various bump texts on the RipperStore forum.
 // @author       Louis_45
 // @match        https://forum.ripper.store/topic/*
@@ -13,8 +13,10 @@
 (function () {
 	"use strict";
 
-    // Fetch the username from the HTML
-    var currentUser = document.getElementById('user-header-name').textContent.trim();
+	// Fetch the username from the HTML
+	var currentUser = document
+		.getElementById("user-header-name")
+		.textContent.trim();
 
 	function hideBumpPosts() {
 		// List of bump text patterns
@@ -28,7 +30,7 @@
 			var postContent = $(this)
 				.find('[component="post/content"]')
 				.text()
-				.replace(/[!+* ~.^?]/g, "")
+				.replace(/[!+* ~.^?<>']/g, "")
 				.trim()
 				.toLowerCase();
 			var posterName = $(this).attr("data-username");

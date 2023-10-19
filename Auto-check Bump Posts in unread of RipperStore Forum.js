@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto-check Bump Posts in the unread tab of the RipperStore Forum
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.3
 // @description  Automatically checks topics with Bump replies on RipperStore Forum
 // @author       Louis_45
 // @match        https://forum.ripper.store/unread
@@ -28,7 +28,7 @@
 				);
 				if (replyElement) {
 					let replyText = replyElement.textContent
-						.replace(/[!+* ~.^?]/g, "")
+						.replace(/[!+* ~.^?<>']/g, "")
 						.trim()
 						.toLowerCase();
 					for (let pattern of bumpPatterns) {
